@@ -17,11 +17,11 @@ helm-package:
 	helm package . --version {{hh_version}} --app-version {{zot_version}}
 
 push-chart:
-	oras push {{oci_repo}}/{{oci_uri}}/{{chart-ref}}:{{zot_version}} zot-{{hh_version}}.tgz
+	helm push zot-{{hh_version}}.tgz oci://{{oci_repo}}/{{oci_uri}}/{{chart-ref}}
 
 local-push: helm-lint helm-package
-	oras push --plain-http {{oci_repo}}/{{oci_uri}}/{{chart-ref}}:{{zot_version}} zot-{{hh_version}}.tgz
-  
+	helm push --plain-http zot-{{hh_version}}.tgz oci://{{oci_repo}}/{{oci_uri}}/{{chart-ref}}
+
 local-push-airgap: helm-lint helm-package
 	mv zot-{{hh_version}}.tgz {{airgap-chart}}
 	docker pull --platform linux/amd64 ghcr.io/project-zot/zot-linux-amd64:{{zot_version}}

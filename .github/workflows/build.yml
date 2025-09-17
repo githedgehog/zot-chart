@@ -47,5 +47,5 @@ jobs:
       - name: Oras Push
         if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
         run: |
-          just push-chart oci_repo=ghcr.io
+          just oci_repo=ghcr.io push-chart
 

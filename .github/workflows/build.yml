@@ -11,7 +11,7 @@ on:
 
 jobs:
   helm-build-push:
-    name: helm-build-push
+    name: "helm-build-push"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -45,7 +45,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Oras Push
-      if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
         run: |
           just push-chart
 

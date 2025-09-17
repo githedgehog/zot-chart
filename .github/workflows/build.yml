@@ -7,7 +7,7 @@ concurrency:
 on:
   push:
     branches: [ "master" ]
-    tags: [ 'v*.*.*']
+    tags: [ 'v*']
 
 jobs:
   helm-build-push:
@@ -47,5 +47,5 @@ jobs:
       - name: Oras Push
         if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
         run: |
-          just push-chart
+          just push-chart oci_repo=ghcr.io
 

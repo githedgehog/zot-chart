@@ -6,7 +6,7 @@ airgap-chart := "zot-chart.tgz"
 airgap-ref := "zot-airgap"
 chart-ref := "charts/zot"
 oci_repo := "127.0.0.1:30000"
-hh_version := "v0.1.67-hh1"
+hh_version := `git describe --tag --dirty --always`
 zot_version :="v2.1.7"
 
 
@@ -17,7 +17,7 @@ helm-package:
 	helm package . --version {{hh_version}} --app-version {{zot_version}}
 
 push-chart:
-	oras push ghcr.io/{{oci_uri}}/{{chart-ref}}:{{zot_version}} zot-{{hh_version}}.tgz
+	oras push {{oci_repo}}/{{oci_uri}}/{{chart-ref}}:{{zot_version}} zot-{{hh_version}}.tgz
 
 local-push: helm-lint helm-package
 	oras push --plain-http {{oci_repo}}/{{oci_uri}}/{{chart-ref}}:{{zot_version}} zot-{{hh_version}}.tgz

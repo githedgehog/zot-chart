@@ -4,7 +4,7 @@ default:
 oci_uri := "githedgehog/fabricator"
 airgap-chart := "zot-chart.tgz"
 airgap-ref := "zot-airgap"
-chart-ref := "charts/zot"
+chart-ref := "charts/"
 oci_repo := "127.0.0.1:30000"
 hh_version := `git describe --tag --dirty --always`
 zot_version :="v2.1.7"
